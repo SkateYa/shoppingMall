@@ -1,2 +1,7 @@
 <!--pages/cart/index.wxml-->
-<text>pages/cart/index.wxml</text>
+
+<view class="revice-address-row">
+    <view class="address-btn">
+        <button type="primary" plain bindtap="handleChooseAdress">获取收货地址</button>
+    </view>
+</view>

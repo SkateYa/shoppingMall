@@ -1,4 +1,3 @@
-// pages/category/index.js
 import { request } from '../../request/index'
 Page({
 
@@ -46,7 +45,6 @@ Page({
         leftMenuList,
         rightContent
       })
-      console.log('jiushuj ')
     }
   }
 
@@ -54,17 +52,27 @@ Page({
     this.getCates()
   },
   // 获取分类数据
-  getCates() {
-    request({ url: '/categories' }).then(result => {
-      this.Cates = result;
-      wx.setStorageSync('cates', this.Cates)
-      let leftMenuList = this.Cates.map(v => v.cat_name)
-      let rightContent =this.Cates[0].children;
-      this.setData({ 
-        leftMenuList,
-        rightContent
-      })
+  async getCates() {
+    const res = await request({ url: '/categories' })
+    this.Cates = res;
+    wx.setStorageSync('cates', this.Cates)
+    let leftMenuList = this.Cates.map(v => v.cat_name)
+    let rightContent =this.Cates[0].children;
+    this.setData({ 
+      leftMenuList,
+      rightContent
     })
+
+    // request({ url: '/categories' }).then(result => {
+    //   this.Cates = result;
+    //   wx.setStorageSync('cates', this.Cates)
+    //   let leftMenuList = this.Cates.map(v => v.cat_name)
+    //   let rightContent =this.Cates[0].children;
+    //   this.setData({ 
+    //     leftMenuList,
+    //     rightContent
+    //   })
+    // })
   },
   // 左边的点击事件
   handleItemTap(e){
