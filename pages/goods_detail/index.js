@@ -75,6 +75,7 @@ Page({
     if(index===-1){
       //不存在，第一次添加
       this.goodsDetailList.num=1
+      this.goodsDetailList.checked=true
       cart.push(this.goodsDetailList)
     }else{
        cart[index].num++;
