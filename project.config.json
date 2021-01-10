@@ -162,6 +162,12 @@
           "pathName": "pages/collect/index",
           "query": "type=1",
           "scene": null
+        },
+        {
+          "name": "pages/search/index",
+          "pathName": "pages/search/index",
+          "query": "type=1",
+          "scene": null
         }
       ]
     }
