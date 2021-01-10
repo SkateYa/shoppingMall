@@ -150,6 +150,18 @@
           "pathName": "pages/order/index",
           "query": "type=1",
           "scene": null
+        },
+        {
+          "name": "pages/goods_detail/index",
+          "pathName": "pages/goods_detail/index",
+          "query": "type=1",
+          "scene": null
+        },
+        {
+          "name": "pages/collect/index",
+          "pathName": "pages/collect/index",
+          "query": "type=1",
+          "scene": null
         }
       ]
     }

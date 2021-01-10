@@ -39,6 +39,9 @@ page {
   justify-content: center;
   align-items: center;
 }
+.goods-name-row .goods-collect .icon-shoucang1 {
+  color: orangered;
+}
 .goods-info .goods-info-title {
   font-size: 32rpx;
   color: var(--themeColor);
