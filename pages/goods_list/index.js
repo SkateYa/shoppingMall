@@ -37,52 +37,53 @@ Page({
       { id: 1, value: '销量', checked: false },
       { id: 2, value: '价格', checked: false }
     ],
-    goodsList:[]
+    goodsList: []
   },
   // 接口的请求参数
-  queryParams:{
-    query:'',
-    cid:'',
-    pagenum:1,
-    pagesize:10
+  queryParams: {
+    query: '',
+    cid: '',
+    pagenum: 1,
+    pagesize: 10
   },
-   // 总页数
-   totalPages:1,
+  // 总页数
+  totalPages: 1,
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.queryParams.cid=options.cid
+    this.queryParams.cid = options.cid || ""
+    this.queryParams.query = options.query || ""
     this.getGoodsList()
     console.log(options)
   },
   // 监听用户上拉触底事件
-  onReachBottom(){
-    if(this.queryParams.pagenum >= this.totalPages){
-    wx.showToast({
-      title: '没有下一页数据了',
-    });
-      
-    }else{
+  onReachBottom() {
+    if (this.queryParams.pagenum >= this.totalPages) {
+      wx.showToast({
+        title: '没有下一页数据了',
+      });
+
+    } else {
       this.queryParams.pagenum++
       this.getGoodsList()
     }
   },
   // 获取商品列表数据
-   async getGoodsList(){
-     const res = await request({url:'/goods/search',data:this.queryParams})
-     const total = res.total
-     this.totalPages = Math.ceil(total/this.queryParams.pagesize)
-     console.log(this.totalPages)
-     this.setData({
-        // 拼接了数组
-        // goodsList:res.goods
-      goodsList:[...this.data.goodsList,...res.goods]
-     })
-     // 关闭下拉刷新的窗口 如果没有调用下拉刷新的窗口 直接关闭也不会报错  
-      wx.stopPullDownRefresh();
-     console.log('res',res)
-    },
+  async getGoodsList() {
+    const res = await request({ url: '/goods/search', data: this.queryParams })
+    const total = res.total
+    this.totalPages = Math.ceil(total / this.queryParams.pagesize)
+    console.log(this.totalPages)
+    this.setData({
+      // 拼接了数组
+      // goodsList:res.goods
+      goodsList: [...this.data.goodsList, ...res.goods]
+    })
+    // 关闭下拉刷新的窗口 如果没有调用下拉刷新的窗口 直接关闭也不会报错  
+    wx.stopPullDownRefresh();
+    console.log('res', res)
+  },
 
 
   tabsItemChange(e) {
@@ -97,13 +98,13 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-     // 1 重置数组
-      this.setData({
-        goodsList:[]
-      })
-       // 2 重置页码
-      this.queryParams.pagenum=1
-       // 3 发送请求
-      this.getGoodsList()
+    // 1 重置数组
+    this.setData({
+      goodsList: []
+    })
+    // 2 重置页码
+    this.queryParams.pagenum = 1
+    // 3 发送请求
+    this.getGoodsList()
   },
 })
